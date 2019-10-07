@@ -8,11 +8,13 @@ def main(args, n):
             a = len(numbers)
             if numbers[a-1] == '':
                 numbers.remove('')
+            a = len(numbers)
+            for i in range(a):
+                numbers[i] = int(numbers[i])
             numberlists.append(numbers)
 
+
     print(numberlists)
-
-
 
 
 def check_input_args(args):
