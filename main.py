@@ -23,12 +23,19 @@ def main(args, n):
     print(numberlists)
 
     outlist = []
+    im = 0
     i = 0
     for list in numberlists:
+        if i == len(numberlists):
+            im += 1
+            i = 0
         if len(outlist) == 0:
-            outlist.append(list[i])
+            outlist.append(list[im])
         else:
-            
+            pass
+
+        i += 1
+
 
 
 
