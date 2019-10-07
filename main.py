@@ -1,5 +1,4 @@
 import sys
-#import argparse
 
 def main(args, n):
     numberlists = []
@@ -52,8 +51,5 @@ def check_input_args(args):
 
 
 if __name__ == "__main__":
-    #args = argparse.ArgumentParser()
-    #ap.add_argument("-b", required=False, default='-a')
-    #ap.add_argument("-a", required=False, default='-a')
     args = sys.argv
     main(args, check_input_args(args))
