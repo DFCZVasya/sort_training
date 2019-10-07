@@ -2,16 +2,22 @@ import sys
 
 def main(args, n):
     numberlists = []
-    for inputfile in args[-1*n:]:
-        with open(inputfile, 'r') as f:
-            numbers = f.read().split('\n')
-            a = len(numbers)
-            if numbers[a-1] == '':
-                numbers.remove('')
-            a = len(numbers)
-            for i in range(a):
-                numbers[i] = int(numbers[i])
-            numberlists.append(numbers)
+    if n == 1:
+        with open(args[-2], 'w') as f:
+            with open(args[-1], 'r') as f2:
+                a = f2.read()
+            f.write(a)
+    else:
+        for inputfile in args[-1*n:]:
+            with open(inputfile, 'r') as f:
+                numbers = f.read().split('\n')
+                a = len(numbers)
+                if numbers[a-1] == '':
+                    numbers.remove('')
+                    a = len(numbers)
+                    for i in range(a):
+                        numbers[i] = int(numbers[i])
+                    numberlists.append(numbers)
 
 
     print(numberlists)
