@@ -22,6 +22,15 @@ def main(args, n):
 
     print(numberlists)
 
+    outlist = []
+    i = 0
+    for list in numberlists:
+        if len(outlist) == 0:
+            outlist.append(list[i])
+        else:
+            
+
+
 
 def check_input_args(args):
 
