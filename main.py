@@ -1,6 +1,6 @@
 import sys
 
-def main(args, n):
+def main(args, n, dataType):
     numberlists = []
     if n == 1:
         with open(args[-2], 'w') as f:
@@ -14,10 +14,11 @@ def main(args, n):
                 a = len(numbers)
                 if numbers[a-1] == '':
                     numbers.remove('')
-                    a = len(numbers)
+                a = len(numbers)
+                if dataType == 1:
                     for i in range(a):
                         numbers[i] = int(numbers[i])
-                    numberlists.append(numbers)
+                numberlists.append(numbers)
 
 
     print(numberlists)
@@ -26,10 +27,11 @@ def main(args, n):
     im = 0
     i = 0
     for list in numberlists:
+        lout  = len(outlist)
         if i == len(numberlists):
             im += 1
             i = 0
-        if len(outlist) == 0:
+        if lout == 0:
             outlist.append(list[im])
         else:
             pass
@@ -40,17 +42,25 @@ def main(args, n):
 
 
 def check_input_args(args):
-
+    dataType = 0
     if len(args) == 1:
         raise Exception("no arguments")
 
     if args[1] == '-i' or args[1] == '-s':
+        if args[1] == '-i':
+            dataType = 1
+        else:
+            dataType = 0
         if args[2][-4:] == '.txt':
             pass
         else:
             raise Exception("wrong arguments")
     else:
         if args[1] == '-a' or args[1] == '-d':
+            if args[2] == '-i':
+                dataType = 1
+            else:
+                dataType = 0
             if args[3][-4:] == '.txt':
                 pass
             else:
@@ -71,9 +81,9 @@ def check_input_args(args):
             if arg[-4:] != '.txt':
                 raise Exception("wrong arguments")
 
-    return n
-
+    return n, dataType
 
 if __name__ == "__main__":
     args = sys.argv
-    main(args, check_input_args(args))
+    n , dataType = check_input_args(args)
+    main(args, n, dataType)
