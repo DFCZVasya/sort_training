@@ -40,10 +40,7 @@ def main(args, n, dataType):
                 n = 0
                 try:
                     while True:
-                        #print(list[im])
-                        #print(outlist[n])
                         if list[im] <= outlist[n]:
-                            #outlist.append(list[im])
                             outlist.insert(n,list[im])
                             break
                         elif list[im] > outlist[n]:
@@ -51,12 +48,6 @@ def main(args, n, dataType):
                         if n == lout:
                             outlist.append(list[im])
                             break
-                        #elif list[im] >= outlist[-n]:
-                        #    outlist.append(list[im])
-                        #    break
-                        #elif list[im] <= outlist[-n]:
-                        #    outlist.insert(-n,list[im])
-                        #    break
                         t = 0
                 except:
                     t += 1
