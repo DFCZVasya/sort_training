@@ -1,14 +1,14 @@
 import sys
 
-def main(args, n, dataType):
+def main(args, nf, dataType, sortType):
     numberlists = []
-    if n == 1:
+    if nf == 1:
         with open(args[-2], 'w') as f:
             with open(args[-1], 'r') as f2:
                 a = f2.read()
             f.write(a)
     else:
-        for inputfile in args[-1*n:]:
+        for inputfile in args[-1*nf:]:
             with open(inputfile, 'r') as f:
                 numbers = f.read().split('\n')
                 a = len(numbers)
@@ -21,46 +21,63 @@ def main(args, n, dataType):
                 numberlists.append(numbers)
 
 
-    print(numberlists)
+        print(numberlists)
 
-    outlist = []
-    im = 0
-    i = 0
-    ex = False
-    t = 0
-    while ex !=True:
-        if i == len(numberlists):
-            im += 1
-            i = 0
-        for list in numberlists:
-            lout  = len(outlist)
-            if lout == 0:
-                outlist.append(list[im])
-            else:
-                n = 0
-                try:
-                    while True:
-                        if list[im] <= outlist[n]:
-                            outlist.insert(n,list[im])
-                            break
-                        elif list[im] > outlist[n]:
-                            n += 1
-                        if n == lout:
-                            outlist.append(list[im])
-                            break
-                        t = 0
-                except:
-                    t += 1
-                    if t == len(numberlists):
-                        ex = True
-            i += 1
+        outlist = []
+        im = 0
+        i = 0
+        ex = False
+        t = 0
+        while ex !=True:
+            if i == len(numberlists):
+                im += 1
+                i = 0
+            for list in numberlists:
+                lout  = len(outlist)
+                if lout == 0:
+                    outlist.append(list[im])
+                else:
+                    n = 0
+                    try:
+                        while True:
+                            if list[im] <= outlist[n]:
+                                outlist.insert(n,list[im])
+                                break
+                            elif list[im] > outlist[n]:
+                                n += 1
+                            if n == lout:
+                                outlist.append(list[im])
+                                break
+                            t = 0
+                    except:
+                        t += 1
+                        if t == len(numberlists):
+                            ex = True
+                i += 1
 
-    print(outlist)
+        print(outlist)
+        if sortType == '-a':
+            with open(args[-nf - 1], 'w') as f:
+                for i in outlist:
+                    if dataType == 1:
+                        f.write(str(i))
+                    else:
+                        f.write(i)
+                    f.write('\n')
+        else:
+            with open(args[-nf - 1], 'w') as f:
+                for i in range(len(outlist) - 1, -1, -1):
+                    if dataType == 1:
+                        f.write(str(outlist[i]))
+                    else:
+                        f.write(outlist[i])
+                    f.write('\n')
 
 
 
 def check_input_args(args):
     dataType = 0
+    sortType = '-a'
     if len(args) == 1:
         raise Exception("no arguments")
 
@@ -79,6 +96,8 @@ def check_input_args(args):
                 dataType = 1
             else:
                 dataType = 0
+            if args[1] == '-d':
+                sortType = '-d'
             if args[3][-4:] == '.txt':
                 pass
             else:
@@ -99,9 +118,9 @@ def check_input_args(args):
             if arg[-4:] != '.txt':
                 raise Exception("wrong arguments")
 
-    return n, dataType
+    return n, dataType, sortType
 
 if __name__ == "__main__":
     args = sys.argv
-    n , dataType = check_input_args(args)
-    main(args, n, dataType)
+    nf, dataType, sortType= check_input_args(args)
+    main(args, nf, dataType, sortType)
