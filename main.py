@@ -26,18 +26,45 @@ def main(args, n, dataType):
     outlist = []
     im = 0
     i = 0
-    for list in numberlists:
-        lout  = len(outlist)
+    ex = False
+    t = 0
+    while ex !=True:
         if i == len(numberlists):
             im += 1
             i = 0
-        if lout == 0:
-            outlist.append(list[im])
-        else:
-            pass
+        for list in numberlists:
+            lout  = len(outlist)
+            if lout == 0:
+                outlist.append(list[im])
+            else:
+                n = 0
+                try:
+                    while True:
+                        #print(list[im])
+                        #print(outlist[n])
+                        if list[im] <= outlist[n]:
+                            #outlist.append(list[im])
+                            outlist.insert(n,list[im])
+                            break
+                        elif list[im] > outlist[n]:
+                            n += 1
+                        if n == lout:
+                            outlist.append(list[im])
+                            break
+                        #elif list[im] >= outlist[-n]:
+                        #    outlist.append(list[im])
+                        #    break
+                        #elif list[im] <= outlist[-n]:
+                        #    outlist.insert(-n,list[im])
+                        #    break
+                        t = 0
+                except:
+                    t += 1
+                    if t == len(numberlists):
+                        ex = True
+            i += 1
 
-        i += 1
-
+    print(outlist)
 
 
 
