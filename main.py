@@ -1,6 +1,8 @@
 import sys
+import time
 
 def main(args, nf, dataType, sortType):
+    start_time = time.time()
     numberlists = []
     if nf == 1:
         with open(args[-2], 'w') as f:
@@ -21,7 +23,7 @@ def main(args, nf, dataType, sortType):
                 numberlists.append(numbers)
 
 
-        print(numberlists)
+        #print(numberlists)
 
         outlist = []
         im = 0
@@ -55,7 +57,7 @@ def main(args, nf, dataType, sortType):
                             ex = True
                 i += 1
 
-        print(outlist)
+        #print(outlist)
         if sortType == '-a':
             with open(args[-nf - 1], 'w') as f:
                 for i in outlist:
@@ -72,6 +74,7 @@ def main(args, nf, dataType, sortType):
                     else:
                         f.write(outlist[i])
                     f.write('\n')
+    print("--- %s seconds ---" % (time.time() - start_time))
 
 
 
